@@ -11,7 +11,7 @@
             background: url('img/img/fondo.jpg');              
             background-position: center center;
             background-size: cover;
-            height: 100vh;
+            height: 75vh;
         }
     </style>
 
