@@ -3,12 +3,12 @@
   session_start();
 
   if (isset($_SESSION['user_id'])) {
-    header('Location: /php-login');
+    header('Location: login.php');
   }
   require 'database.php';
 
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
-    $records = $conn->prepare('SELECT id, email, password FROM users WHERE email = :email');
+    $records = $conn->prepare('SELECT id, email, password FROM usuarios WHERE email = :email');
     $records->bindParam(':email', $_POST['email']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -17,7 +17,7 @@
 
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
-      header("Location: /php-login");
+      header("Location: lista_de_precios_admin.php");
     } else {
       $message = 'Lo siento, esas credenciales no coinciden';
     }
@@ -29,7 +29,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Acceso</title>
+    <title>Ingresar</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
@@ -40,8 +40,8 @@
       <p> <?= $message ?></p>
     <?php endif; ?>
 
-    <h1>Acceso</h1>
-    <span>ó<a href="signup.php">Inscribirse</a></span>
+    <h1>Ingresar</h1>
+    <span> or <a href="signup.php">Registrase</a></span>
 
     <form action="login.php" method="POST">
       <input name="email" type="text" placeholder="Introduce tu correo electrónico">

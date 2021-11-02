@@ -4,7 +4,7 @@
   require 'database.php';
 
   if (isset($_SESSION['user_id'])) {
-    $records = $conn->prepare('SELECT id, email, password FROM users WHERE id = :id');
+    $records = $conn->prepare('SELECT id, email, password FROM usuarios WHERE id = :id');
     $records->bindParam(':id', $_SESSION['user_id']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -37,8 +37,8 @@
     <?php else: ?>
       <h1>Por favor ingresa o regístrate</h1>
 
-      <a href="login.php">Acceso</a> ó
-      <a href="signup.php">Inscribirse</a>
+      <a href="login.php">Ingresar</a> or
+      <a href="signup.php">Registrase</a>
     <?php endif; ?>
   </body>
 </html>
