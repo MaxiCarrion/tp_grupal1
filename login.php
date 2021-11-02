@@ -1,63 +1,52 @@
+<?php
+
+  session_start();
+
+  if (isset($_SESSION['user_id'])) {
+    header('Location: /php-login');
+  }
+  require 'database.php';
+
+  if (!empty($_POST['email']) && !empty($_POST['password'])) {
+    $records = $conn->prepare('SELECT id, email, password FROM users WHERE email = :email');
+    $records->bindParam(':email', $_POST['email']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+    $message = '';
+
+    if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
+      $_SESSION['user_id'] = $results['id'];
+      header("Location: /php-login");
+    } else {
+      $message = 'Lo siento, esas credenciales no coinciden';
+    }
+  }
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Acceso</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <?php require 'partials/header.php' ?>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="jquery/jquery-3.5.1.slim.min.js"></script>
-    <script src="js.bootstrap.min.css"></script>
+    <?php if(!empty($message)): ?>
+      <p> <?= $message ?></p>
+    <?php endif; ?>
 
+    <h1>Acceso</h1>
+    <span>ó<a href="signup.php">Inscribirse</a></span>
 
-    <?php include("includes/menu.php");
-          include("includes/conexion.php");    
-    ?> 
-
-        <!-- //imagen de fondo -->
-    <style>
-        .fondo{
-            background: url('img/img/fondo.jpg');              
-            background-position: center center;
-            background-size: cover;
-            height: 50vh;
-        }
-    </style>
-
-    <title>Login</title>
-</head>
-
-<body class="container" style="background-color:#FFD3DB">
-
-    <?php menu(); ?><br><br>
-    <div style="margin-left: 8rem" >
-            <h1 style="color: white" >Venta de frutas y verduras congeladas</h1>
-        </div>
-
-        <div class=row>
-            <div class="col-4"></div>
-            <div class="col-4">
-                <form action="login_destino.php" method="post">
-                    <div class="form-group">
-                        <label for="nombre">Usuario</label><br>
-                        <input type="text" id="usuario" name="usuario">
-                    </div>    
-                    <div class="form-group">
-                        <label for="nombre">Nombre y Apellido del usuario</label><br>
-                        <input type="text" id="nombre" name="nombre">
-                    </div>
-                    <div class="form-group">
-                        <label for="contraseña">Contraseña</label><br>
-                        <input type="password" id="password" name="password" class="form-control">
-                    </div>  
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
-                </form>
-
-            </div>
-            <div class="col-4"></div>
-        </div>
-
-        <br><br><br><br>
-
-</body>
+    <form action="login.php" method="POST">
+      <input name="email" type="text" placeholder="Introduce tu correo electrónico">
+      <input name="password" type="password" placeholder="Ingresa tu contraseña">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
 </html>
