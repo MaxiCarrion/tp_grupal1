@@ -27,7 +27,7 @@
     <meta name="author" content="" />
     <title>Stylish Portfolio - Start Bootstrap Template</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
     <!-- Simple line icons-->
@@ -64,7 +64,7 @@
                             class="icon-social-twitter"></i></a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="social-link rounded-circle text-white" href="#!"><i class="icon-social-github"></i></a>
+                    <a class="social-link rounded-circle text-white" href="https://github.com/MaxiCarrion/tp_grupal1"><i class="icon-social-github"></i></a>
                 </li>
             </ul>
             <p class="text-muted small mb-0">Copyright &copy; Your Website 2021</p>
@@ -78,16 +78,3 @@
 
 </html>
 
-
-<!--
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Bienvenido al TP_Grupal</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body>
-  </body>
-</html> -->
