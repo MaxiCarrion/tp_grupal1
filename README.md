@@ -1,6 +1,6 @@
 # Trabajo Grupal 
 
-## Accesos Local
+## Acceso Local
 
 Esquema del front realizado en el trabajo grupal
 
@@ -8,7 +8,7 @@ Esquema del front realizado en el trabajo grupal
 |----------------|-------------------------------|-----------------------------|
 |Página Principal|`'index.php'`            |http://localhost/tp_grupal1/index.php|
 |Página Secundaria|`"login.php"`            |http://localhost/tp_grupal1/index.php|
-|Página Terceria |`"signup.php"`  |http://localhost/tp_grupal1/signup.php|
+|Página Terciaria |`"signup.php"`  |http://localhost/tp_grupal1/signup.php|
 
 ## Integrantes
 
